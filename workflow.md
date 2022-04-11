@@ -3,6 +3,7 @@ This text summarizes the main steps needed to follow for running WaSiM-OGGM
 _____
 
 1. Run WaSiM
+
 Daily (or sub-daily) simulations. Monthly mean and sum grids for temperature and precipitation have to be created, respectively. This is done in the interpolation section of the control file.
 
 Variable      | Write code  | Output                
@@ -12,7 +13,8 @@ precipitation | 33          | total monthly values
 
 _____
 2. Convert grids to nc files
-Use the file: [Convert WaSiM grids to netCDF files](../blob/master/convert_)
+
+Use the file: [Convert WaSiM grids to netCDF files](../blob/master/convert_raster_to_nc.py)
 
 _____
 3. Adjust monthly meteo data for OGGM requirements
