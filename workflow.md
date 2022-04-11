@@ -14,7 +14,7 @@ precipitation | 33          | total monthly values
 _____
 2. Convert grids to nc files
 
-Use the file: [Convert WaSiM grids to netCDF files](../blob/master/convert_raster_to_nc.py)
+Use the file: [Convert WaSiM grids to netCDF files](../convert_raster_to_nc.py)
 
 _____
 3. Adjust monthly meteo data for OGGM requirements
