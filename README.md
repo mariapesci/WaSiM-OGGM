@@ -13,6 +13,7 @@ The **O**pen **G**lobal **G**lacier **M**odel ([**OGGM**](https://oggm.org/), (M
 
 
 ### Requirements
+Linux or Mac is required for running OGGM.
 
 ### Get in touch
 María Herminia Pesci, MSc. pesci@iww.uni-hannover.de
