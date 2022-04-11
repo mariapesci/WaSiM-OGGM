@@ -10,7 +10,7 @@ WaSiM-OGGM is an open-source coupling scheme between:
 
 
 Current versions:
-WaSiM Richard's model version 10.06.04 
+WaSiM Richard's model version 10.06.04 \\
 OGGM v1.5.2
 
 This coupling scheme is developed by the Institute of Hydrology and Water Resources Management, Leibniz University Hannover (Germany)
