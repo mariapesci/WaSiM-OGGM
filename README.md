@@ -12,6 +12,18 @@ The **Wa**ter Flow and Balance **Si**mulation **M**odel ([**WaSiM**](http://www.
 The **O**pen **G**lobal **G**lacier **M**odel ([**OGGM**](https://oggm.org/), (Maussion et al., 2019)) is a modular open source model for glacier dynamics. Current version: v1.5.2.
 
 
+### Requirements
+
+### Get in touch
+María Herminia Pesci, MSc. pesci@iww.uni-hannover.de
+
+
+### About
+
+
+
+
+
 This coupling scheme is developed by the Institute of Hydrology and Water Resources Management, Leibniz University Hannover (Germany)
 and is part of the project DIRT-X, which is part of AXIS, an ERA-NET initiated by JPI Climate, and funded by FFG Austria, BMBF Germany,
 FORMAS Sweden, NWO NL, RCN Norway with co-funding by the European Union (Grant No. 776608).
