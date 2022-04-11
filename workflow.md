@@ -3,7 +3,11 @@ This text summarizes the main steps needed to follow for running WaSiM-OGGM
 _____
 
 1. Run WaSiM
-
+Daily (or sub-daily) simulations. Monthly mean and sum grids for temperature and precipitation have to be created, respectively:
+| Variable      | Write code  | Output                |
+| ------------- |:-----------:| ---------------------:|
+| temperature   | 73          | mean monthly values   |
+| precipitation | 33          | sum of monthly values |
 
 _____
 2. Convert grids to nc files
