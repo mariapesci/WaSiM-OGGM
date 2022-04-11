@@ -1,4 +1,6 @@
 ## Coupling scheme workflow
+This text summarizes the main steps needed to follow for running WaSiM-OGGM
+_____
 
 1. Run WaSiM
 
