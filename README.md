@@ -3,7 +3,7 @@ WaSiM-OGGM is an open-source coupling scheme between:
 - WaSiM ==> Water Flow and Balance Simulation Model developed by Schulla, J. (1996)
 - OGGM ==> Open Global Glacier Model for glacier dynamics developed by Maussion, F. et al (2019)
 
-![coupling_scheme]('E:\DIRT_X\Gepatsch\Coupling\Figures.png')
+![coupling_scheme](docs/coupling_scheme.png)
 
 
 
