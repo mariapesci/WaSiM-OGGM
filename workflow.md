@@ -25,11 +25,10 @@ The following steps are required:
 
 * Run OGGM with default climate dataset (CRU)
 * Run OGGM with monthly values of temperature and precipitation prepared during step 2.
-* Run the script [Adjust meteorological data for OGGM](../main/adjust_meteo.py) 
-* The user dataset (x_user) is adjusted (x_adj) to the default dataset (y_def)
+* Run the script [Adjust meteorological data for OGGM](../main/meteo_adj_anom.py) 
+* The user dataset (x_user) is adjusted (x_adj) to the default dataset (y_def) based on anomalies
   
-  * Linear regression for temperature: slope and interception are obtained
-  * Scaling factor for precipitation: user dataset is adjusted with a scaling factor
+
 * In both cases, the adjustement is based on the mean monthly values of the variables.
 * Modify the netCDF file created in 2. to adjust the values according to x_adj with [CDO (Climate Data Operator)](https://code.mpimet.mpg.de/projects/cdo), running in Linux:
 
