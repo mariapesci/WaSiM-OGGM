@@ -1,6 +1,6 @@
 # WaSiM-OGGM
 
------ This coupling is under development and cannot be used yet. If you have any questions please contact me! -----
+**----- This coupling is under development and cannot be used yet. If you have any questions please contact me! -----**
 
 The water balance in high glacierized regions is greatly influenced by the glacier's behavior, since they can alter the hydrological response of a catchment across time scales.
 Although some water balance models (i.e. **WaSiM**) can satisfactory estimate glacier's evolution by using empirical approachs, a representation of the explicit ice thickness is still missing. Therefore, a coupling scheme between **WaSiM** and a more sophisticated glacier model that accounts for glacier geometry including explicit ice flow dynamics is developed (more specifically, **OGGM** is used). 
