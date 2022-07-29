@@ -12,7 +12,7 @@ Since only the water balance model is calibrated, no additional expertise on gla
 ### About the models
 The **Wa**ter Flow and Balance **Si**mulation **M**odel ([**WaSiM**](http://www.wasim.ch/en/index.html), Schulla (1997, 2021)) is a grid-based model used for the simulation of the hydrological processes above and below the land surface. Current version: Richard's model version 10.06.04. 
 
-The **O**pen **G**lobal **G**lacier **M**odel ([**OGGM**](https://oggm.org/), (Maussion et al., 2019)) is a modular open source model for glacier dynamics. Current version: v1.5.2.
+The **O**pen **G**lobal **G**lacier **M**odel ([**OGGM**](https://oggm.org/), (Maussion et al., 2019)) is a modular open source model for glacier dynamics. Current version: v1.5.4.
 
 
 ### Requirements
