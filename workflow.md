@@ -14,7 +14,7 @@ precipitation | 33          | total monthly values
 _____
 2. Convert grids to nc files
 
-Use the file: [Convert WaSiM grids to netCDF files](../main/convert_raster_to_nc.py) \
+Use the file: [Convert WaSiM grids to netCDF files](../main/scripts/convert_raster_to_nc.py) \
 Results: one netCDF file (i.e.: 'monthly_meteo.nc') containing monthly values of temperature and precipitation.
 
 _____
