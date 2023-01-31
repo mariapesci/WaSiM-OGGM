@@ -1,0 +1,1676 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SpinUp is a new run mode that tries to initialize many grids and stacks like soil moisture, soil temperatures, firn on glaciers and snow during a multi-year spinup period.
+[SpinUp]
+0
+1
+1
+3
+elevation_model	100 lin
+soil_types	1 lin
+landuse		1 lin
+max_ponding_storage 1 lin
+slope_angle	2 sqrt
+slope_aspect	90 lin
+
+[output_list]
+4    
+11
+1101
+1102
+1103
+
+[output_interval]
+24            
+1            
+0            
+1440.0            
+WriteAsciiGrids = 1
+WriteDoubleGrids = 0
+InitialStateDirectory = ../initial_states_glac/ 	
+DefaultOutputDirectory = ../output/ 
+
+[coordinates]
+46.96         
+10.74         
+15.0          
+1             
+
+[region_transition_distance]
+10000
+
+[elevation_model]
+../input/alm.dem   
+
+[zone_grid]
+../input/alm.ezg         
+
+[standard_grids]
+11                           
+../input/alm.use         landuse                    1  
+../input/alm.slp            slope_angle                1  
+../input/alm.exp           slope_aspect               1  
+../input/alm.ezg         zonegrid_soilmodel         1  
+../input/alm.art            soil_types                 1  
+../input/alm.fzs        flow_times                 1  
+../input/alm.sd1		slidefraction1		  fillcode = 0
+../input/alm.sd2		slidefraction2		  fillcode = 0
+../input/alm.sd3		slidefraction3		  fillcode = 0
+../input/alm.sd4		slidefraction4		  fillcode = 0
+../input/alm.svfdir_2          deposition_index          fillcode = 1
+albealm.grd              albedo                      1
+../input/alm.k        hydraulic_conductivity     1  
+../input/alm.nfk   available_soil_moisture    1  
+../input/alm.atb               topographic_faktor         1  
+../input/alm.c1             concflux_tracer_1_input     1
+../input/alm.c2             concflux_tracer_2_input     1
+../input/alm.c3             concflux_tracer_3_input     1
+../input/alm.c4             concflux_tracer_4_input     1 
+../input/alm.c5             concflux_tracer_5_input     1
+../input/alm.c6             concflux_tracer_6_input     1
+../input/alm.c7             concflux_tracer_7_input     1
+../input/alm.c8             concflux_tracer_8_input     1 
+../input/alm.c9             concflux_tracer_9_input     1
+../input/alm.dep      river_depth                0   
+../input/alm.wit      river_width                0   
+../input/alm.lin      river_links                0   
+../input/alm.kol        kolmation                  0   
+../input/alm.drn      drainage_depth             1   
+../input/alm.dis   drainage_distance          1   
+../input/alm.cly       clay_depth                 1   
+../input/alm.pnd         max_ponding_storage        1   
+../input/alm.irr       irrigation_codes           1   
+../input/alm.aq1         aquifer_thickness_1        1   
+../input/alm.s01    gw_storage_coeff_1         1   
+../input/alm.bh1     gw_boundary_fix_h_1        0   
+../input/alm.bq1     gw_boundary_fix_q_1        0   
+../input/alm.kx1          gw_k_x_1                   1   
+../input/alm.ky1          gw_k_y_1                   1   
+../input/alm.gk1        gw_kolmation_1             1   
+../input/alm.aq2         aquifer_thickness_2        1   
+../input/alm.s02    gw_storage_coeff_2         1   
+../input/alm.bh2     gw_boundary_fix_h_2        0   
+../input/alm.bq2     gw_boundary_fix_q_2        0   
+../input/alm.kx2          gw_k_x_2                   1   
+../input/alm.ky2          gw_k_y_2                   1   
+../input/alm.gk2        gw_kolmation_2             1   
+
+
+[variable_grids]
+3                                            		
+albealm.grd              albedo             1      0 
+3                                        	
+0                                         	
+glcalm.grd GlacierizedCells 0  -9999 
+7
+1
+glidalm.grd    GlacierCodes     0  -9999 
+7
+1
+
+[model_time]
+0                
+1           
+01         
+1969          
+0                
+31             
+12           
+2019            
+
+[meteo_data_count]
+5
+
+[meteo_names]
+temperature
+precipitation
+wind_speed
+global_radiation
+air_humidity
+vapor_pressure
+sunshine_duration
+
+ 
+[temperature]
+5				                       
+E:\DIRT_X\Gepatsch\Coupling\wasim\meteo_INCA_kNN\t_komplett.txt  AdditionalColumns=0   
+1500 2800 200 1 200
+tempalm.grd         			
+63	                    			
+1.00                           			
+tempalm.b70 2001  
+998                           			
+2                    			
+0.45                         			
+1500                   			
+-35                   	      			
+0.8                  	      			
+-40                           			
+-40                           			
+40                            			
+40                            			
+0                      			
+1                             			
+4                             			
+
+[precipitation]
+5                             			
+E:\DIRT_X\Gepatsch\Coupling\wasim\meteo_INCA_kNN\p_komplett.txt AdditionalColumns=0   
+1500 2500 200 1 100
+precalm.grd        	 		
+23	                    			
+1.0                          			
+precalm.b70 2001  
+998                           			
+2                    			
+0.90                          			
+1500                   		
+-35                   	      			
+0.8                  	      			
+0.01                           			
+0                             			
+900                           			
+900                           			
+0                      			
+2                             			
+1 	                      			
+
+[wind_speed]
+5                             			
+E:\DIRT_X\Gepatsch\Coupling\wasim\meteo_INCA_kNN\w_komplett.txt AdditionalColumns=0  
+1200 1500 300 1 300
+windalm.grd           			
+63                    			
+1.0                           			
+windalm.b70 2001  
+998                           			
+2                    			
+0.50                           			
+1500                   			
+0.0                   			
+1.0                  			
+0                             			
+0                             			
+90                            			
+90                            			
+0                      			
+3                             			
+4                             			
+
+[global_radiation]
+5                           			
+E:\DIRT_X\Gepatsch\Coupling\wasim\meteo_INCA_kNN\s_komplett.txt AdditionalColumns=0  
+1000 2000 300 1 300
+rad_alm.grd      			
+63                    			
+1.0                      			
+rad_alm.b70 2001  
+998                        			
+2                    			
+0.5                           			
+1500                   			
+0.0                   			
+1.0                  			
+0                             			
+0                             			
+1367                          			
+1367                          			
+0                      			
+1                             			
+4                             			
+
+[air_humidity]
+5                             			
+E:\DIRT_X\Gepatsch\Coupling\wasim\meteo_INCA_kNN\r_komplett.txt AdditionalColumns=0  
+1000 2000 200 1 100
+humialm.grd       			
+63                    			
+0.01                          			
+humialm.b70 2001 
+998                          			
+2                    			
+0.3                          			
+1500                  
+0.0                  
+1.0                 
+0.01                         
+0.01                         
+1.0                          
+1.0                          
+0                     
+3                            
+1                            
+
+
+[sunshine_duration]
+1                            			
+E:\DIRT_X\Gepatsch\Coupling\wasim\meteo_INCA_kNN\sun_dur.dat AdditionalColumns=0  
+1200 1500 300 1 300
+ssd_alm.grd       			
+3                    			
+1.0                           			
+ssd_alm.b70  2001  
+998                           			
+2                    			
+0.75                           			
+1500                   			
+0.0                   			
+1.0                  			
+0                             			
+0                             			
+1.0                           			
+1.0                           			
+0                      			
+3                             			
+1                             			
+
+[vapor_pressure]
+10                             			
+E:\DIRT_X\Gepatsch\Coupling\wasim\meteo_INCA_kNN\vap.dat AdditionalColumns=0  
+1200 1500 300 1 300
+vapoalm.grd          			
+53                    			
+1.0                           			
+vapoalm.b70 2001 
+998                           			
+2                   
+0.3                          
+1500                  
+0.0                  
+1.0                 
+0                            
+0                            
+90                           
+90                           
+0                     
+1                            
+4                            
+
+[RegionalSuperposition]
+0
+1440.0
+NumberOfEntities = 2;
+precipitation {
+	entityinputgrid = precipitation_reg ;
+		regions = 1   2   ;
+		weights = 0.0 1.0 ;
+	entityinputgrid = precipitation_idw ;
+		regions = 1   2   ;
+		weights = 1.0 0.0 ;
+	outputgrid  = precalm.grd ;
+		writecode = 3 ;
+	outputtable = precalm.b70;
+		statcode  = 2001;
+}
+temperature {
+	entityinputgrid = temperature_reg;
+		regions = 1   2   ;
+		weights = 1.0 1.0 ;
+	entityinputgrid = temperature_idw;
+		regions = 1   2   ;
+		weights = 0.0 0.0 ;
+	outputgrid  = tempalm.grd ;
+		writecode = 3 ;
+	outputtable = tempalm.b70 ;
+		statcode  = 2001 ;
+}
+
+
+
+[precipitation_correction]
+1                    
+0.0                 
+1.3                  
+0.1                  
+1.18                  
+0.03                  
+
+
+
+[radiation_correction]
+1                   
+1440.0               
+2                   
+tcoralm.grd
+3          
+1                   
+excoalm.grd  
+3          
+shapalm.grd
+3          
+1                   
+1                   
+
+
+[evapotranspiration]
+1                       
+1440.0                   
+1                       
+0.5  0.6  0.8  1.0  1.1 1.1 1.2 1.1 1.0 0.9 0.7 0.5 
+0.20 0.20 0.21 0.29 0.29 0.28 0.26 0.25 0.22 0.22 0.20 0.20
+0.5                     
+etp_alm.grd      
+13              
+etp_alm.b70 2001
+etr_alm.grd      
+53  	
+etr_alm.b70 2001
+evapalm.grd     
+13              
+evapalm.b70 2001
+evaralm.grd     
+13              
+evaralm.b70 2001
+etrsalm.grd	
+13        	
+etrsalm.b70 2001
+eip_alm.grd      
+13              
+eip_alm.b70 2001
+rgexalm.b70 2001
++0.23   +1.77    -2.28    +1.28   
++0.072  -0.808   +2.112   -0.239  
+0.88 0.05                         
+1654.0                            
+3.3  4.4  6.1  7.9  9.4  10.0  9.9  9.0  7.8  6.0  4.2  3.2 
+0.62  0.1                         
+
+
+[snow_model]
+1                   
+1440.0               
+7           
+0.5                 
+-0.4                
+0                 
+0.1                 
+1.0                 
+2                   
+1           	    
+0.8                 
+0.07                
+1.5                 
+2.5                 
+0.5                 
+0.9                 
+rainalm.grd        
+3                  
+rainalm.b70 2001
+snowalm.grd        
+3                  
+snowalm.b70 2001
+sdayalm.grd        
+3                  
+sdayalm.b70 2001
+sagealm.grd         
+3                  
+sagealm.b70 2001
+albealm.b70 2001
+qsnoalm.grd
+3                  
+qschalm.b70 2001
+qsmealm.grd
+3                  
+qsmealm.b70 2001
+ssnoalm.grd         
+3                  
+sliqalm.grd         
+3                  
+sstoalm.b70 2001
+sstoalm.grd         
+3                  
+0                  
+snowtempalm.grd      			
+13                   				
+snowtempalm.b70 2001 
+ssrftempalm.grd  			
+13                   				
+ssrftempalm.b70 2001 
+inpmassalm.grd           			
+13                   				
+inpmassalm.b70 2001 
+mobmassalm.grd          			
+13                   				
+mobmassalm.b70 2001 
+depositalm.grd          			
+13                   				
+depositalm.b70 2001 
+55		 
+2		 
+60		 
+0.0076		 
+1.1			 
+1.005			 
+1	                 
+
+
+[ice_firn]
+11  			
+4   			
+3.5			
+2			
+2.9   				
+0.0005  			
+0.002  			
+0.001  			
+0.003 			
+20       			
+500      			
+80      			
+0
+0.001
+0
+qfiralm.grd 		
+3          		
+qfiralm.b70 2001
+qicealm.grd  		
+3          		
+qicealm.b70 2001
+qglcalm.b70 2001
+qsglalm.b70 2001
+0                			
+10 3055 1.5					
+09 30 						
+60 1.36 10 4 				
+glfirnalm.grd  			
+63           				
+glfirnalm.b70 2001 
+glmbalm.grd 			
+7
+glmb_oldalm.grd 		
+3	                     			
+glmbalm.b70 2001 
+glmb2alm.b70 2001 
+1.0							
+ssto_OffGlac_alm.b70 2001 
+ssno_onGlac_alm.grd      			
+13                   		
+sliq_onGlac_alm.grd      			
+13                   		
+ssto_onGlac_alm.grd    			
+13                   		
+qsmeglalm.grd    			
+13                   		
+ssrftempglalm.grd		
+13                   		
+snowtempglalm.grd    		
+13                   		
+etrsglalm.grd    			
+13         
+1000 0.25
+
+[LayeredSnowModel]
+0              
+1	
+0.1	
+0.85	
+-2.0	
+0.0	
+0.5	
+1.0	
+0.0	
+swes_stackalm.grd	
+13                  
+swel_stackalm.grd	
+13                  
+tempersnow_stackalm.grd
+13                  
+thetasnow_stackalm.grd
+13                  
+hhydsnow_stackalm.grd	
+13                  
+hgeosnow_stackalm.grd
+13                  
+qusnow_stackalm.grd	
+13                  
+thicksnow_stackalm.grd
+13                  
+denssnow_stackalm.grd
+13                  
+upperIndexSnowalm.grd
+13                  
+
+[LayeredSnowProperties]
+1
+1 Snow { method = MultipleHorizons; 
+	 ThicknessScaling	= 1.0 ;
+	 PMacroThresh	= 0 ;
+	 MacroCapacity	= 0 ;
+	 CapacityRedu	= 0 ;
+	 MacroDepth		= 0 ;
+	 EvapMaxDepth	= 0 ;
+	 horizon		= 1 ;
+	 Name		= Snow ; 
+	 DryHeatCapacity	= 2000 ;
+	 DryDensity 	= 400  ;
+	 DryThermalConduct	= 2.33 ;
+	 KMinFrozenSoil	= 1e-6; 
+	 ksat		= 1e-4;
+	 k_recession	= 1.0  ;
+	 theta_sat		= 0.7  ;
+	 theta_res		= 0.1  ;
+	 alpha		= 18   ; 12 
+	 Par_n		= 4    ; 3  
+	 Par_tau		= 0.5  ;
+	 thickness		= 0.3  ;
+	 layers		= 30   ;
+}
+
+
+
+
+[interception_model]
+1                           
+1440.0                       
+11			    
+qthralm.grd      
+13               
+qi__alm.b70 2001
+ei__alm.grd           
+3                  
+ei__alm.b70 2001
+si__alm.grd           
+3                  
+si__alm.b70 2001
+0.35                        
+0                  
+SCNTEMPalm.grd           
+3
+SCNTEMP_alm.b70 2001
+SCNRHalm.grd             
+3
+SCNRHalm.b70 2001
+SCNRADalm.grd            
+3
+SCNRAD_alm.b70 2001
+SCNWINDalm.grd           
+3
+SCNWIND_alm.b70 2001
+SCNLOADalm.grd           
+3
+SCNLOAD_alm.b70 2001
+SCNAGEalm.grd            
+3
+SCNAGE_alm.b70 2001
+SCNALBalm.grd            
+3
+SCNALB_alm.b70 2001
+SCNSUBLalm.grd           
+3
+SCNSUBL_alm.b70 2001
+SCNUNLOADalm.grd         
+3
+SCNUNLOAD_alm.b70 2001
+SCNLIQOUTalm.grd         
+3
+SCNLIQOUT_alm.b70 2001
+1.0        
+0.1       
+2	
+CEB_CANENBALalm.grd          
+3
+CEB_CANENBALalm.b70 2001
+CEB_CANTEMPalm.grd          
+3
+CEB_CANTEMPalm.b70 2001
+CEB_CANTEMP_OLDalm.grd          
+3
+CEB_CANTEMP_OLDalm.b70 2001
+CEB_DUMMYalm.grd          
+3
+CEB_DUMMYalm.b70 2001
+
+[infiltration_model]
+0                           
+1440.0                       
+infxalm.grd        
+3                  
+infxalm.b70 2001
+sattalm.grd         
+3                  
+0.3                         
+
+
+[SiltingUpModel]
+0                           
+1440.0                       
+1							
+sdisalm.b70 2001
+qdsualm.b70 2001
+sdisalm.grd        
+3                  
+pausalm.grd        
+3                  
+ekinalm.grd        
+3                  
+tsbbalm.grd        
+3                  
+qdsualm.grd        
+3                  
+1     2     3     4     5     6     7     8     9     10    11    12    13   
+1.0   1.0   1.0   1.0   1.0   1.0   1.0   1.0   1.0   1.0   1.0   1.0   1.0  
+0                  
+65.1	
+12.21	
+0.521	
+-0.641	
+0.0131	
+-1.031	
+0.71	
+-0.191	
+SiltingUpExpressions {
+	W = ((P>0.05)&(P<76.2))*(11.89+8.73*log10(Abs(P+0.001))) + (P>=76.2)*28.33;
+	X = A;
+	Y = B*K^C*(L*100)^D;
+	C1 = (100*L)^F; 
+	C2 = K^G; 		
+	C3 = (O+0.001)^H; 
+	Z = (O<=0) + (O>0)*(E*C1*C2*C3);
+
+	V = ((X-Y)*exp(-Z*Q)+Y)*R/60;
+}
+
+[SurfaceRoutingModel]
+0                           
+1440.0                       
+2                           
+qdsralm.b70 2001
+qisralm.b70 2001
+qbsralm.b70 2001
+qgsralm.b70 2001
+sfcvalm.grd   
+3                  
+sflxalm.grd    
+3                  
+0.001                       
+40                          
+0.0001                      
+40                          
+30                          
+3600                        
+0.02                        
+2.0                         
+0                  
+sfstsralm.b70 2001
+
+[lake_model]
+0                           
+2                           
+0.1
+0.4 
+0                  
+
+[unsatzon_model]
+1                       
+1440.0                   
+2                       
+0 			
+0 			
+0 			
+0 			
+5e-8                    
+2.6 			
+qdraalm.b70 2001
+gwstalm.b70 2001
+gwn_alm.b70 2001
+sb05alm.b70 2001
+sb1_alm.b70 2001
+wurzalm.b70 2001
+infxalm.b70 2001
+pondalm.b70 2001
+qdiralm.b70 6001
+qiflalm.b70 6001
+qbasalm.b70 6001
+qgesalm.b70 6001
+gwinalm.b70 2001
+gwexalm.b70 2001
+macralm.b70 2001
+qinfalm.b70 2001
+sb05alm.grd        
+3                  
+sb1_alm.grd        
+3                  
+wurzalm.grd         
+3                  
+tethalm.grd       
+63                 
+hhydalm.grd  
+63                 
+hgeoalm.grd  
+63                 
+qu__alm.grd        
+63                 
+gwstalm.grd      
+3                  
+gwthalm.grd      
+3                  
+gwn_alm.grd          
+3                  
+gwlvalm.grd      
+3                  
+qdrnalm.grd       
+3                  
+sattalm.grd         
+3                  
+infxalm.grd        
+3                  
+qd__alm.grd           
+13               
+0.2grid           
+13                  
+qb__alm.grd           
+13                  
+gwinalm.grd         
+3                  
+gwexalm.grd         
+3                  
+pondalm.grd    
+3                  
+uprsalm.grd       
+3                  
+percalm.grd       
+3                  
+macralm.grd     
+3                  
+irrialm.grd        	
+3                  	
+68 45
+qbotalm.b70  
+thetalm.b70  
+hhydalm.b70  
+otherdataalm.b70  
+etrdalm.b70  
+intdalm.b70  
+702	703	11	1101	1102	1103
+270	270	270	270	270	270
+210	210	210	210	210	210
+80	80	80	80	80	80
+10	10	10	10	10	10
+1	1	1	1	1	1
+0.001	0.001	0.001	0.001	0.001	0.001
+0               			
+storage_richards.ftz			
+300 						
+stepalm.b70 2001
+stepalm.grd     			
+3     
+
+
+[ExternalCoupling]
+0
+     
+
+[heat_transfer]
+0  
+1  
+0  
+0  
+-9.0
+-0.007
+800
+1500
+0.58
+1e-12  
+0.5562
+2.33
+4187   
+1940   
+2090   
+334000 
+1000
+1.22
+0.98
+6
+1200
+1.0
+1.0
+ts_localm.b70   
+ts_avgalm.b70 2001 
+tsoilalm.grd        	
+3                  		
+thawalm.grd        	
+63                  		
+
+
+
+[irrigation]
+0                           
+1440.0                       
+irgwalm.b70 2001
+irswalm.b70 2001
+
+[groundwater_flow]
+0                       
+1440.0                   
+1                       
+1000                    
+0.00001                 
+1.0                     
+-1.30                   
+0             	
+1                       
+3 3                     
+glogalm.b70 
+gwh1alm.grd    
+3           	
+gwx1alm.grd   
+3           	
+gwy1alm.grd   
+3           	
+gwh2alm.grd    
+3           	
+gwx2alm.grd   
+3          	
+gwy2alm.grd   
+3           	
+gwh3alm.grd    
+3           	
+gwx3alm.grd   
+3              
+gwy3alm.grd   
+3              
+
+
+[soil_model]
+0                       
+1440.0                   
+1                       
+sd__alm.grd 
+3              
+suz_alm.grd      
+3              
+sif_alm.grd      
+3              
+sbiaalm.grd     
+3              
+nfkialm.grd    
+3              
+ssp_alm.grd      
+3              
+qd__alm.grd       
+3              
+0.2grid       
+3              
+peakalm.grd     
+qdiralm.b70 2001
+qiflalm.b70 2001
+qbasalm.b70 2001
+qbavalm.b70 2001
+qgesalm.b70 2001
+sb__alm.b70 2001
+suz_alm.b70 2001
+siflalm.b70 2001
+sd__alm.b70 2001
+10    		    
+0.015		    
+40.0  		    
+8.0  		    
+6.0  		    
+0.0  		    
+1.0  		    
+3600  		    
+0.03 		    
+0.01 		    
+0.0  		    
+0.45 		    
+3.0  		    
+0.9  		    
+0.4  		    
+0              
+storage_topmodel.ftz   
+
+
+[routing_model]
+1                   
+1440.0               
+1 3000 90 24        
+qgkoalm.b70 6001 
+E:\DIRT_X\Gepatsch\Coupling\wasim\meteo_INCA_kNN\qs02.txt                         
+6	     		
+11	1 					
+1101	2
+1102	3
+1103	4	
+702	5
+703	6
+720                 
+TG 1102 (AE=27.8000000, AErel=1.0)
+ from OL 1103 (kh=0.1, kv=0.4, Bh= 0.4, Bv=  1.6, Th= 0.19, Mh=25.0, Mv=10.0, I=0.2243, L=2972.8, AE=1.7800000)
+TG 11 (AE=60.6100000, AErel=1.0)
+ from OL 1102 (kh=0.1, kv=0.4, Bh= 2.0, Bv=  7.9, Th= 0.49, Mh=25.0, Mv=10.0, I=0.0615, L=2789.9, AE=27.8000000)
+  and OL 1101 (kh=0.1, kv=0.4, Bh= 0.8, Bv=  3.4, Th= 0.29, Mh=25.0, Mv=10.0, I=0.1205, L=3638.5, AE=6.4200000)
+TG 702 (AE=6.8700000, AErel=1.0)
+ from OL 703 (kh=0.1, kv=0.4, Bh= 0.4, Bv=  1.8, Th= 0.19, Mh=25.0, Mv=10.0, I=0.1813, L=1065.7, AE=1.8900000)
+
+
+[abstraction_rule_reservoir_1]
+0              
+1e4      1.0                                                 
+1e5      1.0                                                 
+1.0001e5 10.0                                                
+1e6      10.0                                                
+1.0001e6 50.0                                                
+1e7      50.0                                                
+1.0001e7 100.0                                               
+1e8      100.0                                               
+1.0001e8 500.0                                               
+
+
+[multilayer_landuse]
+20
+1	Partial_development		{ Landuse_Layers = 1,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+2	Development			{ Landuse_Layers = 2,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+3	Vegetationfree_areas		{ Landuse_Layers = 3,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+4	Sparse_vegetation		{ Landuse_Layers = 4,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+5	Intensive_grassland		{ Landuse_Layers = 5,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+6	Extensive_grassland		{ Landuse_Layers = 6,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+7	Intensive_arableland		{ Landuse_Layers = 7,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+8	Extensive_arableland		{ Landuse_Layers = 8,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+9	Uncultivated_field		{ Landuse_Layers = 9,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+10	Bush_forest			{ Landuse_Layers = 10,	4;	k_extinct = 0.25;	LAI_scale = 2;}
+11	Deciduous_forest		{ Landuse_Layers = 11,	4;	k_extinct = 0.25;	LAI_scale = 2;}
+12	Coniferous_forest		{ Landuse_Layers = 12,	4;	k_extinct = 0.25;	LAI_scale = 2;}
+13	Mixed_forest			{ Landuse_Layers = 13,	4;	k_extinct = 0.25;	LAI_scale = 2;}
+14	Loose_trees			{ Landuse_Layers = 14,	6;	k_extinct = 0.25;	LAI_scale = 2;}
+15	Moor_swamps			{ Landuse_Layers = 15,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+16	Water_bodies			{ Landuse_Layers = 16,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+17	Horticulture	    		{ Landuse_Layers = 17,  -9999; 	k_extinct = 0.25; 	LAI_scale = 2;}
+18	Rock_surfaces			{ Landuse_Layers = 18,	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+19	Glaciers			{ Landuse_Layers = 19, 	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+20	Landfill			{ Landuse_Layers = 4, 	-9999;	k_extinct = 0.25;	LAI_scale = 2;}
+
+
+[landuse_table]
+20
+1	partially_sealed_areas{method	=	VariableDayCount;	
+		RootDistr		=	1.0;
+		TReduWet		=	0.95;
+		LimitReduWet		=	0.5;
+		HReduDry		=	3.5;
+		IntercepCap     	= 	0.3;
+		JulDays			=	15	46	74	105	135	166	196	227	258	288	319	349;
+		Albedo			=	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2;
+		rsc			=	100	100	100	80	70	70	70	70	70	70	100	100;
+		rs_interception		=	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5;
+		rs_evaporation		=	150	150	150	150	150	150	150	150	150	150	150	150;
+		LAI			=	1	1	1	1	1	1	1	1	1	1	1	1;
+		Z0			=	1	1	1	1	1	1	1	1	1	1	1	1;
+		VCF			=	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5;
+		RootDepth		=	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4;
+		AltDep			=	0.025	0.025	0.025	0.025	0.025	0.025	-0.025	-0.025	-0.025	-0.025	-0.025	-0.025;
+	}
+2	sealed_surfaces {method	=	VariableDayCount;		
+		RootDistr		=	1.0;
+		TReduWet		=	0.95;
+		LimitReduWet		=	0.5;
+		HReduDry		=	3.5;
+		IntercepCap		=	0.2;
+		JulDays			=	15	46	74	105	135	166	196	227	258	288	319	349;
+		Albedo			=	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2;
+		rsc			=	100	100	100	100	100	100	100	100	100	100	100	100;
+		rs_interception		=	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5;
+		rs_evaporation		=	200	200	200	200	200	200	200	200	200	200	200	200;
+		LAI			=	1	1	1	1	1	1	1	1	1	1	1	1;
+		Z0			=	1	1	1	1	1	1	1	1	1	1	1	1;
+		VCF			=	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2;
+		RootDepth		=	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4	0.4;
+		AltDep			=	0.025	0.025	0.025	0.025	0.025	0.025	-0.025	-0.025	-0.025	-0.025	-0.025	-0.025;
+	}
+3	vegetationfree_areas {method	= VariableDayCount;		
+		RootDistr		= 1.0;
+		TReduWet		= 0.95;
+		LimitReduWet		= 0.5;
+		HReduDry		= 3.5;
+		IntercepCap		= 0.2;
+		JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+		Albedo			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+		rsc			= 100   100   100   100   100   100    100    100    100    100    100    100  ;
+		rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+		rs_evaporation		= 100   100   100   100   100   100    100    100    100    100    100    100  ;
+		LAI			= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+		Z0			= 0.1   0.1   0.1   0.1   0.1   0.1    0.1    0.1    0.1    0.1    0.1    0.1 ;
+		VCF			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+		RootDepth		= 0.1   0.1   0.1   0.1   0.1   0.1    0.1    0.1    0.1    0.1    0.1    0.1  ;
+		AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	}
+4	sparse_vegetation {method 	= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.2;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+	        rsc			= 90    90    80    60    50    45     45     45     50     60     90     90   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 100   100   100   100   100   100    100    100    100    100    100    100  ;
+	        LAI			= 1     1     1     1.5   1.5   2      2      2      1.5    1.5    1      1    ;
+	        Z0			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+	        VCF			= 0.2   0.2   0.2   0.2   0.4   0.4    0.4    0.4    0.3    0.2    0.2    0.2  ;
+	        RootDepth		= 0.4   0.4   0.4   0.4   0.4   0.4    0.4    0.4    0.4    0.4    0.4    0.4  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+5	intensive_grassland {method 	= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.6;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.25  0.25  0.25  0.25  0.25  0.25   0.25   0.25   0.25   0.25   0.25   0.25 ;
+	        rsc			= 90    90    80    60    50    45     40     45     50     60     90     90   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200	   200  ;
+	        LAI			= 2     2     2     3     4     4      4      4      3      2      2      2    ;
+	        Z0			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+	        VCF			= 0.95  0.95  0.95  0.95  1.0   1.0    1.0    1.0    0.95   0.95   0.95   0.95 ;
+	        RootDepth		= 0.3   0.3   0.4   0.5   0.5   0.6    0.6    0.5    0.5    0.4    0.3    0.3  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+6	extensive_grassland {method  	= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.4;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.25  0.25  0.25  0.25  0.25  0.25   0.25   0.25   0.25   0.25   0.25   0.25 ;
+	        rsc			= 90    90    80    60    50    45     40     45     50     60     90     90   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200  ;
+	        LAI			= 2     2     2     2     3     3      3      3      3      2      2      2    ;
+	        Z0			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2 ;
+	        VCF			= 0.9   0.9   0.9   0.95  1.0   1.0    1.0    1.0    0.95   0.9    0.9    0.9  ;
+	        RootDepth		= 0.4   0.4   0.4   0.4   0.4   0.4    0.4    0.4    0.4    0.4    0.4    0.4  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+7	intensive_arableland {method 	= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.4;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.25  0.25  0.25  0.25  0.25  0.25   0.25   0.25   0.25   0.25   0.25   0.25 ;
+	        rsc			= 80    80    75    65    55    45     45     45     55     65     90     90   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200  ;
+	        LAI			= 1     1     2     3     4     5      5      4      3      2      1      1    ;
+	        Z0			= 0.1   0.1   0.1   0.15  0.2   0.2    0.2    0.2    0.2    0.1    0.1    0.1  ;
+	        VCF			= 0.3   0.3   0.3   0.7   0.8   0.95   0.95   0.8    0.7    0.3    0.3    0.3  ;
+	        RootDepth		= 0.15  0.15  0.2   0.4   0.5   0.5    0.5    0.5    0.4    0.2    0.15   0.15 ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+8	extensive_arableland {method	= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.4;
+	        JulDays 		= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.25  0.25  0.25  0.25  0.25  0.25   0.25   0.25   0.25   0.25   0.25   0.25 ;
+	        rsc			= 80    80    75    65    55    45     45     45     55     65     90     90   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200  ;
+	        LAI			= 1     1     2     3     4     4      4      4      3      2      1      1    ;
+	        Z0			= 0.1   0.1   0.1   0.15  0.2   0.2    0.2    0.2    0.2    0.1    0.1    0.1  ;
+	        VCF			= 0.3   0.3   0.3   0.5   0.8   0.8    0.8    0.7    0.6    0.3    0.3    0.3  ;
+	        RootDepth		= 0.15  0.15  0.2   0.4   0.5   0.5    0.5    0.5    0.4    0.2    0.15   0.15 ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+9	uncultivated_field {method	= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.6;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+	        rsc			= 80    80    70    60    50    40     40     50     50     60     70     80   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200 ;
+	        LAI			= 3     3     3     4     4     4      4      4      3      3      3      3    ;
+	        Z0			= 0.1   0.1   0.1   0.15  0.2   0.2    0.2    0.2    0.2    0.1    0.1    0.1  ;
+	        VCF			= 1     1     1     1     1     1      1      1      1      1      1      1    ;
+	        RootDepth		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+10	bush_forest {method		= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.6;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+	        rsc			= 80    80    70    60    50    40     40     50     50     60     70     80   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200 ;
+	        LAI			= 3     3     3     4     5     5      4      4      3      3      3      3    ;
+	        Z0			= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+	        VCF			= 0.9   0.9   0.9   0.9   0.95  0.95   0.95   0.95   0.95   0.9    0.9    0.9  ;
+	        RootDepth		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+11	deciduous_forest {method	= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.6;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.15  0.15  0.15  0.15  0.15  0.15   0.15   0.15   0.15   0.15   0.15   0.15 ;
+	        rsc			= 100   100   95    65    45    45     45     45     50     75     100    100  ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200 ;
+	        LAI			= 1     1     4     4     6     8      8      7      6      4      1      1    ;
+	        Z0			= 2     2     2     3     5     5      5      5      4      3      2      2    ;
+	        VCF			= 0.7   0.7   0.7   0.8   0.95  0.95   0.95   0.95   0.9    0.8    0.7    0.7  ;
+	        RootDepth		= 1.4   1.4   1.4   1.4   1.4   1.4    1.4    1.4    1.4    1.4    1.4    1.4  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+12	coniferous_forest {method	= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.6;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.12  0.12  0.12  0.12  0.12  0.12   0.12   0.12   0.12   0.12   0.12   0.12 ;
+	        rsc			= 80    80    75    55    40    40     40     40     45     65     80     80   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200 ;
+	        LAI			= 6     6     8     8     10    10     10     10     8      8      6      6    ;
+	        Z0			= 3     3     3     3     3     3      3      3      3      3      3      3    ;
+	        VCF			= 0.9   0.9   0.9   0.9   0.95  0.95   0.95   0.95   0.95   0.9    0.9    0.9  ;
+	        RootDepth		= 1.2   1.2   1.2   1.2   1.2   1.2    1.2    1.2    1.2    1.2    1.2    1.2  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+13	mixed_forest {method		= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.6;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.15  0.15  0.15  0.15  0.15  0.15   0.15   0.15   0.15   0.15   0.15   0.15 ;
+	        rsc			= 90    90    85    60    45    45     45     45     50     70     90     90   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200 ;
+	        LAI			= 3     3     3     6     8     8      8      8      8      6      3      3    ;
+	        Z0			= 2.5   2.5   2.5   3.0   3.5   4.5    4.5    4.5    4.0    3.0    2.5    2.5  ;
+	        VCF			= 0.8   0.8   0.8   0.9   0.92  0.92   0.92   0.92   0.9    0.8    0.8    0.8  ;
+	        RootDepth		= 1.3   1.3   1.3   1.3   1.3   1.3    1.3    1.3    1.3    1.3    1.3    1.3  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+14	loose_trees {method		= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.5;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.15  0.15  0.15  0.15  0.15  0.15   0.15   0.15   0.15   0.15   0.15   0.15 ;
+	        rsc			= 90    90    85    60    45    45     45     45     50     70     90     90   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 200   200   200   200   200   200    200    200    200    200    200    200 ;
+	        LAI			= 2.5   2.5   2.5   3.5   4.0   4.0    4.0    4.0    3.5    2.5    2.5    2.5  ;
+	        Z0			= 2.5   2.5   2.5   2.5   2.5   2.5    2.5    2.5    2.5    2.5    2.5    2.5  ;
+	        VCF			= 0.4   0.4   0.4   0.4   0.8   0.9    0.9    0.9    0.7    0.4    0.4    0.4  ;
+	        RootDepth		= 1.3   1.3   1.3   1.3   1.3   1.3    1.3    1.3    1.3    1.3    1.3    1.3  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+15	moor_swamps {method		= VariableDayCount;		
+	        RootDistr		= 1.0;
+	        TReduWet		= 0.95;
+	        LimitReduWet		= 0.5;
+	        HReduDry		= 3.5;
+	        IntercepCap		= 0.0;
+	        JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349  ;
+	        Albedo			= 0.15  0.15  0.15  0.15  0.15  0.15   0.15   0.15   0.15   0.15   0.15   0.15 ;
+	        rsc			= 50    50    40    40    30    20     20     30     40     40     50     50   ;
+	        rs_interception		= 0.5   0.5   0.5   0.5   0.5   0.5    0.5    0.5    0.5    0.5    0.5    0.5  ;
+	        rs_evaporation		= 100   100   100   100   100   100    100    100    100    100    100    100  ;
+	        LAI			= 3     3     3     3     4     4      4      4      3      3      3      3    ;
+	        Z0			= 0.1   0.1   0.1   0.1   0.1   0.1    0.1    0.1    0.1    0.1    0.1    0.1  ;
+	        VCF			= 0.8   0.8   0.8   0.9   0.9   0.9    0.9    0.9    0.8    0.8    0.8    0.8  ;
+	        RootDepth		= 0.2   0.2   0.2   0.2   0.2   0.2    0.2    0.2    0.2    0.2    0.2    0.2  ;
+	        AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	        }
+16	water_bodies {method		= VariableDayCount;		
+		RootDistr		= 1.0;
+		TReduWet		= 1.0;
+		LimitReduWet		= 1.0;
+		HReduDry		= 150;
+		IntercepCap		= 0;
+		JulDays			= 365;
+		Albedo			= 0.15;
+ 		rsc			= 1;
+		rs_interception		= 0;
+		rs_evaporation		= 0;
+		LAI			= 1;
+		Z0			= 0.1;
+		VCF			= 1.0;
+		RootDepth		= 1.0;
+		AltDep			= 0;
+	}
+17	horticulture {method		= VariableDayCount;		
+		RootDistr		= 1.0;
+		TReduWet		= 0.95;
+		LimitReduWet		= 0.5;
+		HReduDry		= 3.45;
+		IntercepCap		= 0.35;
+		JulDays			= 15    46    74    105   135   166    196    227    258    288    319    349 ;
+		Albedo			= 0.25  0.25  0.25  0.25  0.25  0.25   0.25   0.25   0.25   0.25   0.25   0.25;
+		rsc			= 100   100   90    60    45    45     45     45     45     70     100    100;
+		rs_interception		= 100   100   90    60    50    50     50     50     50     70     100    100;
+		rs_evaporation		= 280	 280   280   280   280	 280	280    280    280    280    280	   280;
+		LAI			= 0.5   0.5   0.5   2     4     5      5      5      4      3      0.5    0.5;
+		Z0			= 1.0   1.0   1.0   1.0   1.0   1.0    1.0    1.0    1.0    1.0    1.0    1.0;
+		VCF			= 0.75  0.75  0.75  0.75  0.75  0.75   0.75   0.75   0.75   0.75   0.75   0.75;
+		RootDepth		= 0.8   0.8   0.8   0.8   0.8   0.8    0.8    0.8    0.8    0.8    0.8    0.8;
+		AltDep			= 0.025 0.025 0.025 0.025 0.025 0.025 -0.025 -0.025 -0.025 -0.025 -0.025 -0.025;
+	}
+18	rock_surfaces {method		= VariableDayCount;		
+		RootDistr		= 1.0;				
+		TReduWet		= 0.95;				
+		HReduDry		= 0.5;				
+		JulDays			= 15	46	74	105	135	166	196	227	258	288	319	349;
+		Albedo			= 0.12	0.12	0.12	0.12	0.12	0.12	0.12	0.12	0.12	0.12	0.12	0.12;
+		rsc			= 250	250	250	250	250	250	250	250	250	250	250	250;
+		LAI			= 1	1	1	1	1	1	1	1	1	1	1	1;	
+		Z0			= 0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05;
+		VCF			= 0.8	0.8	0.8	0.8	0.8	0.8	0.8	0.8	0.8	0.8	0.8	0.8;
+		RootDepth		= 0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1;
+		AltDep			= 0.025	0.025	0.025	0.025	0.025	0.025	-0.025	-0.025	-0.025	-0.025	-0.025	-0.025;
+	}
+19	ice_areas {method		= VariableDayCount;		
+		RootDistr		= 1.0;
+		TReduWet		= 1.0;
+		LimitReduWet		= 1.0;
+		HReduDry		= 150;
+		IntercepCap		= 0;
+		JulDays			= 365;
+		Albedo			= 0.38;
+		rsc			= 100;
+		rs_interception		= 0;
+		rs_evaporation		= 400;
+		LAI			= 1.0;
+		Z0			= 0.05;
+		VCF			= 1.0;
+		RootDepth		= 0.1;
+		AltDep			= 0;
+		}
+20	firn_areas {method		= VariableDayCount;		
+		RootDistr		= 1.0;
+		TReduWet		= 1.0;
+		LimitReduWet 		= 1.0;
+		HReduDry		= 150;
+		IntercepCap		= 0;
+		JulDays			= 365;
+		Albedo			= 0.60;
+		rsc			= 100;
+		rs_interception		= 0;
+		rs_evaporation		= 400;
+		LAI			= 1.0;
+		Z0			= 0.05;
+		VCF			= 1.0;
+		RootDepth		= 0.1;
+		AltDep			= 0;
+		}
+
+[soil_table]
+13	
+3	R {method = MultipleHorizons;
+			PMacroThresh	=	10;				
+			MacroCapacity	=	1;				
+			CapacityRedu	=	1.0;				
+			MacroDepth	=	2.0;				
+			name		=	R;
+			horizon		=	1;				
+			ThicknessScaling =	4.0;			
+			layers		=	6;				
+			ksat		=	1.e-9;				
+			theta_sat	=	0.2;				
+			theta_res	=	0.04;				
+			alpha		=	8.0;				
+			Par_n		=	1.8;				
+			thickness	=	0.1;				
+			k_recession	=	0.9;				
+			maxratio	=	100;				
+	}
+5	R {method = MultipleHorizons;
+			PMacroThresh	=	10;				
+			MacroCapacity	=	1;				
+			CapacityRedu	=	1.0;				
+			MacroDepth	=	2.0;				
+			name		=	R;
+			horizon		=	1;				
+			ThicknessScaling =	4.0;			
+			layers		=	6;				
+			ksat		=	1.e-9;				
+			theta_sat	=	0.2;				
+			theta_res	=	0.04;				
+			alpha		=	8.0;				
+			Par_n		=	1.8;				
+			thickness	=	0.1;				
+			k_recession	=	0.9;				
+			maxratio	=	100;				
+	}
+390878	SL_SL {method = MultipleHorizons;
+			PMacroThresh	=	20;					
+			MacroCapacity	=	3;					
+			CapacityRedu	=	0.5;					
+			MacroDepth	=	1.0;					
+			name		=	H1	H2;
+			horizon		=	1	2;				
+			ThicknessScaling =	4.0 4.0;			
+			layers		=	1	5;				
+			ksat		=	1.23E-5	1.23E-5;			
+			theta_sat	=	0.41	0.41;				
+			theta_res	=	0.065	0.065;				
+			alpha		=	7.5	7.5;				
+			Par_n		=	1.89	1.89;				
+			thickness	=	0.25	0.35;				
+			k_recession	=	0.9	0.9;				
+			maxratio	=	100	100;				
+	}
+390882	SL_SL {method = MultipleHorizons;
+			PMacroThresh	=	20;					
+			MacroCapacity	=	3;					
+			CapacityRedu	=	0.5;					
+			MacroDepth	=	1.0;					
+			name		=	H1	H2;
+			horizon		=	1	2;				
+			ThicknessScaling =	4.0 4.0;			
+			layers		=	1	5;				
+			ksat		=	1.23E-5	1.23E-5;			
+			theta_sat	=	0.41	0.41;				
+			theta_res	=	0.065	0.065;				
+			alpha		=	7.5	7.5;				
+			Par_n		=	1.89	1.89;				
+			thickness	=	0.25	0.35;				
+			k_recession	=	0.9	0.9;				
+			maxratio	=	100	100;				
+	}
+390948	SL_SL_SL_SL_SL {method = MultipleHorizons;
+			PMacroThresh	=	20;					
+			MacroCapacity	=	3;					
+			CapacityRedu	=	0.5;					
+			MacroDepth	=	1.0;					
+			name		=	Ah	Bw1	Bw2	Bw3	C;
+			horizon		=	1	2	3	4	5;	
+			ThicknessScaling =	4.0 4.0	4.0	4.0	4.0;
+			layers		=	1	1	1	1	2;	
+			ksat		=	1.23E-5	1.23E-5	1.23E-5	1.23E-5	1.23E-5;
+			theta_sat	=	0.45	0.45	0.45	0.45	0.45;	
+			theta_res	=	0.067	0.067	0.067	0.067	0.067;	
+			alpha		=	7.5	7.5	7.5	7.5	7.5;	
+			Par_n		=	1.89	1.89	1.89	1.89	1.89;	
+			thickness	=	0.10	0.20	0.30	0.35	0.175;	
+			k_recession	=	0.9	0.9	0.9	0.9	0.9;	
+			maxratio	=	100	100	100	100	100;	
+	}
+430001	SIL_SIL_SIL_SIL_SIL_SIL {method = MultipleHorizons;
+			PMacroThresh	=	10;						
+			MacroCapacity	=	4;						
+			CapacityRedu	=	1.0;						
+			MacroDepth	=	2.0;						
+			name		=	A	AB	Bw	BC	Cg1	Cg2;
+			horizon		=	1	2	3	4	5	6;	
+			ThicknessScaling =	4.0 4.0	4.0	4.0	4.0 4.0;
+			layers		=	1	1	1	1	1	1;	
+			ksat		=	1.25E-6	1.25E-6	1.25E-6	1.25E-6	1.25E-6	1.25E-6;
+			theta_sat	=	0.45	0.45	0.45	0.45	0.45	0.45;	
+			theta_res	=	0.067	0.067	0.067	0.067	0.067	0.067;	
+			alpha		=	2.0	2.0	2.0	2.0	2.0	2.0;	
+			Par_n		=	1.41	1.41	1.41	1.41	1.41	1.41;	
+			thickness	=	0.09	0.19	0.19	0.21	0.23	0.29;	
+			k_recession	=	0.9	0.9	0.9	0.9	0.9	0.9;	
+			maxratio	=	100	100	100	100	100	100;	
+	}
+430004	S_S_S_S_S {method = MultipleHorizons;
+			PMacroThresh	=	1000;					
+			MacroCapacity	=	0;					
+			CapacityRedu	=	1.0;					
+			MacroDepth	=	0.0;					
+			name		=	Ahe	E	Bs	Bw	C;
+			horizon		=	1	2	3	4	5;	
+			ThicknessScaling =	4.0 4.0	4.0	4.0	4.0;
+			layers		=	1	1	1	1	2;	
+			ksat		=	8.25E-5	8.25E-5	8.25E-5	8.25E-5	8.25E-5;
+			theta_sat	=	0.45	0.45	0.45	0.45	0.45;	
+			theta_res	=	0.067	0.067	0.067	0.067	0.067;	
+			alpha		=	7.5	7.5	7.5	7.5	7.5;	
+			Par_n		=	1.89	1.89	1.89	1.89	1.89;	
+			thickness	=	0.15	0.15	0.10	0.10	0.375;	
+			k_recession	=	0.9	0.9	0.9	0.9	0.9;	
+			maxratio	=	100	100	100	100	100;	
+	}
+430006	SIL_SIL_SIL_SIL {method = MultipleHorizons;
+			PMacroThresh	=	10;				
+			MacroCapacity	=	4;				
+			CapacityRedu	=	1.0;				
+			MacroDepth	=	2.0;				
+			name		=	Ap	Bt	BC	C;
+			horizon		=	1	2	3	4;	
+			ThicknessScaling =	4.0 4.0	4.0	4.0;
+			layers		=	1	2	1	2;	
+			ksat		=	1.25E-6	1.25E-6	1.25E-6	1.25E-6;
+			theta_sat	=	0.45	0.45	0.45	0.45;	
+			theta_res	=	0.067	0.067	0.067	0.067;	
+			alpha		=	2.0	2.0	2.0	2.0;	
+			Par_n		=	1.41	1.41	1.41	1.41;	
+			thickness	=	0.23	0.28	0.40	0.405;	
+			k_recession	=	0.9	0.9	0.9	0.9;	
+			maxratio	=	100	100	100	100;	
+	}
+430008	L_SIC_C		{method = MultipleHorizons;
+			PMacroThresh	=	15;				
+			MacroCapacity	=	4;				
+			CapacityRedu	=	1.0;				
+			MacroDepth	=	1.5;				
+			name		=	Ah	CA	C;
+			horizon		=	1	2	3;		
+			ThicknessScaling =	4.0 4.0	4.0;	
+			layers		=	2	2	2;		
+			ksat		=	2.89E-6	5.56E-8	5.56E-7;	
+			theta_sat	=	0.43	0.36	0.38;		
+			theta_res	=	0.078	0.070	0.068;		
+			alpha		=	3.6	0.5	0.8;		
+			Par_n		=	1.56	1.09	1.09;		
+			thickness	=	0.05	0.075	0.875;		
+			k_recession	=	0.9	0.9	0.9;		
+			maxratio	=	100	100	100;		
+	}
+430014	SICL_L_R {method = MultipleHorizons;
+			PMacroThresh	=	20;				
+			MacroCapacity	=	3;				
+			CapacityRedu	=	0.5;				
+			MacroDepth	=	1.0;				
+			name		=	Ah	Ca	C;
+			horizon		=	1	2	3;		
+			ThicknessScaling =	4.0 4.0	4.0;	
+			layers		=	2	2	2;		
+			ksat		=	1.94E-7	2.89E-6	1.e-9;		
+			theta_sat	=	0.43	0.43	0.2;		
+			theta_res	=	0.010	0.078	0.04;		
+			alpha		=	1.0	3.6	8.0;		
+			Par_n		=	1.23	1.56	1.8;		
+			thickness	=	0.05	0.05	0.9;		
+			k_recession	=	0.9	0.9	0.9;		
+			maxratio	=	100	100	100;		
+	}
+430015	R {method = MultipleHorizons;
+			PMacroThresh	=	10;				
+			MacroCapacity	=	1;				
+			CapacityRedu	=	1.0;				
+			MacroDepth	=	2.0;				
+			name		=	R;
+			horizon		=	1;				
+			ThicknessScaling =	4.0;			
+			layers		=	6;				
+			ksat		=	1.e-9;				
+			theta_sat	=	0.2;				
+			theta_res	=	0.04;				
+			alpha		=	8.0;				
+			Par_n		=	1.8;				
+			thickness	=	0.1;				
+			k_recession	=	0.9;				
+			maxratio	=	100;				
+	}
+430016	SL_LS_LS {method = MultipleHorizons;
+			PMacroThresh	=	20;				
+			MacroCapacity	=	3;				
+			CapacityRedu	=	0.5;				
+			MacroDepth	=	1.0;				
+			name		=	Ah	Bw1	Bw2;
+			horizon		=	1	2	3;		
+			ThicknessScaling =	4.0 4.0	4.0;	
+			layers		=	2	2	2;		
+			ksat		=	1.23E-5	4.05E-5	4.05E-5;	
+			theta_sat	=	0.41	0.43	0.43;		
+			theta_res	=	0.065	0.057	0.057;		
+			alpha		=	7.5	7.0	7.0;		
+			Par_n		=	1.89	1.70	1.70;		
+			thickness	=	0.02	0.075	0.065;		
+			k_recession	=	0.9	0.9	0.9;		
+			maxratio	=	100	100	100;		
+	}
+490300	SIL_SIL_SIL_LS  {method = MultipleHorizons;
+			PMacroThresh	=	10;				
+			MacroCapacity	=	4;				
+			CapacityRedu	=	1.0;				
+			MacroDepth	=	2.0;				
+			name		=	Ah	Cw	Cwg	2Cr;
+			horizon		=	1	2	3	4;	
+			ThicknessScaling =	4.0 4.0	4.0	4.0;
+			layers		=	1	2	1	2;	
+			ksat		=	1.25E-6	1.25E-6	1.25E-6	4.05E-5;
+			theta_sat	=	0.45	0.45	0.45	0.43;	
+			theta_res	=	0.067	0.067	0.067	0.057;	
+			alpha		=	2.0	2.0	2.0	7.0;	
+			Par_n		=	1.41	1.41	1.41	1.70;	
+			thickness	=	0.15	0.275	0.30	0.50;	
+			k_recession	=	0.9	0.9	0.9	0.9;	
+			maxratio	=	100	100	100	100;	
+	}
+
+
+
+[substance_transport]
+0   
+
+
+[irrigation_table]
+10                 
+  1   water            2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+  2   settlements      2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+  3   pine_forest      2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+  4   decidous_forest  2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+  5   mixed_forest     2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+  6   agriculture      2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+  7   grass            2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+  8   bushes           2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+ 15   rock             2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+ 19   horticulture     2        1           3  0.3       5     5  15    80     6   1     80    6  15    80     7   1    80     7  15    80     8   1    80     8  15    80     9   1    80     9  15    80     10   15    80
+
+[special_output]
+0
+1440.0
+numfiles = 2;
+outputfile { header = glacierdata;
+	filename = special_output_glaciers.b70;
+	entity {
+		ID 	= GlacierMassBalance;
+		Symbol 	= GMB;
+		Xcoords	= 771371, 801115, 771211;
+		Ycoords	= 214666, 194848, 164323;
+	}
+	entity {
+		ID 	= melt_from_firn;
+		Symbol 	= Mfirn;
+		Xcoords	= 771371, 801115, 771211;
+		Ycoords	= 214666, 194848, 164323;
+	}
+	entity {
+		ID 	= melt_from_ice;
+		Symbol 	= Mice;
+		Xcoords	= 771371, 801115, 771211;
+		Ycoords	= 214666, 194848, 164323;
+	}
+}
+outputfile { header = soildata;
+	filename = special_output_soilmodel.b70;
+	entity {
+		ID 	= theta;
+		Symbol 	= th;
+		Xcoords	= 748503, 748503, 748503, 748503, 748503, 748503, 770572, 770572, 770572, 770572, 770572, 770572;
+		Ycoords	= 196127, 196127, 196127, 196127, 196127, 196127, 256698, 256698, 256698, 256698, 256698, 256698;
+		Level	= 1, 	  2, 	  3, 	  4,	  5, 	  6, 	  1,	  2,	  3,	  4,	  5,	  6;
+	}
+	entity {
+		ID 	= hydraulic_heads;
+		Symbol 	= hh;
+		Xcoords	= 748503, 748503, 748503, 748503, 748503, 748503, 770572, 770572, 770572, 770572, 770572, 770572;
+		Ycoords	= 196127, 196127, 196127, 196127, 196127, 196127, 256698, 256698, 256698, 256698, 256698, 256698;
+		Level	= 1, 	  2, 	  3, 	  4,	  5, 	  6, 	  1,	  2,	  3,	  4,	  5,	  6;
+	}
+}
+
+[data_assimilation]
+0
+1440.0
+2
+grid { grid-ID = snow_storage_total;
+listfilename = d:\Data\SWE_observed\observed_SWE.list;
+options
+{
+split-into-liquid-and-solid = true;
+weighing-by-glacierized-fraction = true;
+default-liquid-percentage = 5.0;
+}
+}
+reservoir { lake-ID = 43;
+AverageWaterTable = 480.2;
+listfilename = d:\Data\lake-levels\lake43.asc;
+options
+{
+format = wasim;
+skiprows = 23;
+}
+}
