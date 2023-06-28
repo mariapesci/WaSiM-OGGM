@@ -21,14 +21,10 @@ Results: one netCDF file (i.e.: 'monthly_meteo.nc') containing monthly values of
 _____
 **3. Run OGGM**
 
-OGGM calculates the monthly mass balance based on the Temperature index model ([Marzeion et al., 2012](https://tc.copernicus.org/articles/6/1295/2012/tc-6-1295-2012.html)). In this coupling scheme, we try to use the default parameters from OGGM (and avoid extra calibration steps). Since many of the glaciers are not reference glaciers (without observed mass balances), there are two options on how to run the model:
-  - First option: with user's climate dataset (e.g. from WaSiM) calculate glacier mass balances and calibrate them with geodetic mass balance data [T-index model calibrated on geodetic MB data](https://docs.oggm.org/en/stable/mass-balance-2012-pergla.html).
-  - Second option: adjust the climate input data for OGGM. This is needed because the parameters are obtained through interpolation from neighboring glaciers, which were already calibrated using default climate datasets. In case this option is selected, a "first" OGGM with the default climate dataset CRU is required: [coupling_oggm_CRU](../main/scripts/coupling_oggm_CRU.py)
-  - Run OGGM with user's dataset: [coupling_oggm_user](../main/scripts/coupling_oggm_user.py) 
-    * If the second option is selected, the user dataset (x_user) is adjusted (x_adj) to the default dataset (y_def) based on anomalies (the adjustement is based on the mean monthly values of the variables)
-    * Define the initialization method: 
+OGGM calculates the monthly mass balance based on the Temperature index model ([Marzeion et al., 2012](https://tc.copernicus.org/articles/6/1295/2012/tc-6-1295-2012.html)) calibrated on geodetic mass balance observations ([Hugonet et al., 2021](https://www.nature.com/articles/s41586-021-03436-z)). The description of the T-index model can be found here: [T-index model calibrated on geodetic MB data](https://docs.oggm.org/en/stable/mass-balance-monthly.html).
+ * Define the initialization method: 
       * No initialization: if OGGM starts its simulation from the RGI inventory's date (e.g. 2003)
-      * Dynamic spinup: if OGGM starts its simulation no more than 40 years before the RGI inventory's date (e.g. in 1970)
+      * Dynamic spinup: if OGGM starts its simulation no more than 40 years before the RGI inventory's date (e.g. in 1970). Either no initialization or with a dynamic spinup, the script 
       * Initialization_Eis: if OGGM starts its simulations far away in time, the method developed by Eis et al. (2021) will be applied. In this case, the script [coupling_initialization](../main/scripts/coupling_initialization.py) needs to be run beforehand
 
 Based on the [ice dynamics flowline model](https://docs.oggm.org/en/stable/ice-dynamics.html), an outline is created for each of the glaciers and each year within the simulation period. The outlines are converted into polygons and saved as shapefiles for posterior use.\
