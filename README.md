@@ -1,6 +1,6 @@
 # WaSiM-OGGM
 
-**----- This coupling is under development and cannot be used yet. If you have any questions please contact me! -----**
+**----- This coupling is still under development. If you have any questions please contact me! -----**
 
 The water balance in high glacierized regions is greatly influenced by the glacier's behavior, since they can alter the hydrological response of a catchment across time scales.
 Although some water balance models (i.e. **WaSiM**) can satisfactory estimate glacier's evolution by using empirical approachs, a representation of the explicit ice thickness is still missing. Therefore, a coupling scheme between **WaSiM** and a more sophisticated glacier model that accounts for glacier geometry including explicit ice flow dynamics is developed (more specifically, **OGGM** is used). 
@@ -12,7 +12,7 @@ Since only the water balance model is calibrated, no additional expertise on gla
 ### About the models
 The **Wa**ter Flow and Balance **Si**mulation **M**odel ([**WaSiM**](http://www.wasim.ch/en/index.html), Schulla (1997, 2021)) is a grid-based model used for the simulation of the hydrological processes above and below the land surface. Current version: Richard's model version 10.06.04. 
 
-The **O**pen **G**lobal **G**lacier **M**odel ([**OGGM**](https://oggm.org/), (Maussion et al., 2019)) is a modular open source model for glacier dynamics. Current version: v1.5.4.
+The **O**pen **G**lobal **G**lacier **M**odel ([**OGGM**](https://oggm.org/), (Maussion et al., 2019)) is a modular open source model for glacier dynamics. Current version: v1.6.
 
 
 ### Requirements
