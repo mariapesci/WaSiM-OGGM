@@ -44,3 +44,9 @@ WaSiM determines the mass balance of the glaciers on a daily basis and based on 
 \
 An automatic calibration is performed in which selected parameters (affecting the MB in WaSiM) are adjusted, while running the coupling scheme in a yearly basis. The [Statistical Parameter Optimization Tool for Python, SPOTPY (Houska et al., 2015)](https://spotpy.readthedocs.io/en/latest/) is linked to the coupling scheme.\
 Since the parameters affecting the mass balance also influences the ice melt contribution to the total runoff, a multi-objective calibration approach based on a multi-objective function is applied. In this way, the model is calibrated against observed runoff and OGGM-mass balance data. 
+
+Post-processing of OGGM output data:
+* Determine volume from thickness and outlines: with the script [init_vol_from_thickness.py](../main/scripts/init_vol_from_thickness.py), the grids containing the distributed thickness for each glacier are read and merged all together for each individual year. The volume is then corrected with the calculated values from the dynamic run performed by OGGM. A new ASCII file is saved as "glaciercells", containing the initial volume of the glacierized cells, similar to the grid containing the fraction of glacierization per cell.
+* Convert ASCII grids to binary files: this step is required before running WaSiM and can be done with [asci_to_grid.py](../main/scripts/asci_to_grid.py).
+* Set up the multi-objective optimization of the coupling scheme: within this script [spotpy_coupling_settings.py](../main/scripts/spotpy_coupling_settings.py), where simulation period, input data, observed data, target variables and maximum number of iterations are defined.
+* Finally, the actual coupling with optimization: [spotpy_calibration.py](../main/scripts/spotpy_calibration.py). Here, different weights are assigned to the multi-objective function, together with the algortihm used during the optimization.
