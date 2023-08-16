@@ -1,4 +1,13 @@
-# Script with settings for the automatic calibration done with Spotpy (spotpy_calibration.py)
+"""
+@author: María Pesci
+
+This script contains the settings and functions for performing the automatic calibration
+of the third (WaSiM) run of the coupling scheme. It does not produce any output, it has
+to be run with 'spotpy_calibration.py'.
+
+An example of the control file required for the coupling calibration can be found in 'ctrl_coupling_master.txt'
+"""
+
 import sys
 import os
 import pandas as pd
@@ -9,13 +18,7 @@ import datetime
 import shutil
 import glob
 
-
-WASIMLIB_PATH = r'C:\Users\pesci\WaSIM' ##### CHANGE PATH #####
-sys.path.append(WASIMLIB_PATH)
 import wasimlib
-
-FUNCT_COUPLING_PATH = r'E:\DIRT_X\Gepatsch\Coupling\Scripts\funct_coupling' ##### CHANGE PATH #####
-sys.path.append(FUNCT_COUPLING_PATH)
 import funct_coupling
 
 def update_ctrl_file(ifile, ofile, variables_str, variables_val):
@@ -277,20 +280,16 @@ class wasim_coupling_model(object):
         return runoff, glmb_annual
 
 class coupling_settings(object):
-    catchment              = 'Gepatschalm' #'Rofenache' #
+    catchment              = 'Gepatschalm' 
 
     year                   = '70'
-    year1                  = 1969 #2003
-    year2                  = 1999 #2019
+    year1                  = 1969 
+    year2                  = 1999 
     step                   = 1
     va_sca_factor          = 1.0
-    va_exp_factor          = 1.0 
+    va_exp_factor          = 1.0
 
-    rgi_ids                = ['RGI60-11.00746'] #['RGI60-11.00897', 'RGI60-11.00787', 'RGI60-11.00719']  #
-    glac_vol_oggm          = r'E:\DIRT_X\OGGM\from_nc_to_asci\glac_vol_oggm_INCA_'
-    glac_area_oggm         = r'E:\DIRT_X\OGGM\from_nc_to_asci\glac_area_oggm_INCA_'
-
-    init_glac_dir          = 'init_states_glac_vol_oggm1.6/dyn_spinup/' #'init_states_glac_2003/' #
+    init_glac_dir          = 'init_states_glac_vol_oggm1.6/dyn_spinup/'
     input_dir              = 'input/'
     init_states_dir        = 'initial_states/'
     meteo_dir              = 'meteo_INCA_kNN/'
@@ -300,55 +299,35 @@ class coupling_settings(object):
     output_dir             = 'output/'
     results_dir            = 'results_coupling/'
 
-    if catchment == 'Gepatschalm':
-        working_dir        = r'E:/DIRT_X/Gepatsch/Coupling/spotpy_cal/wasim_coupling/' #r'E:/DIRT_X/Gepatsch/Coupling/wasim/'
-        glaccells_grd      = 'glcalm%04i.grd'
-        glaccodes_grd      = 'glidalm%04i.grd'
-        glmb_grd           = 'glmbalm.grd'
-        glmbold_grd        = 'glmb_oldalm.grd'
-        station_area       = 57.6
-        subbasins_areas    = {1:3.86, 
-                           2:9.46, 201:1.68, 202:0.93,
-                           3:4.11, 
-                           4:6.71, 
-                           5:11.59, 
-                           6:4.89, 
-                           7:36.98, 701:12.41, 702:4.14, 703:1.89, 704:2.98, 705:1.33, 706:1.01,
-                           8:7.52, 801:14.16, 802:2.36, 803:2.69, 
-                           9:16.58,
-                           10:23.41,
-                           11:23.38, 1101:6.42, 1102:26.02, 1103:1.78,
-                           12:49.06}
-        obs_runoff         = pd.read_csv(r'E:\DIRT_X\Gepatsch\Coupling\obs_discharge\gepatschalm_discharge.csv', index_col=0, parse_dates=True)['Q']
-        obs_glmb_aux       = pd.read_csv(r'E:\DIRT_X\Gepatsch\Coupling\oggm_mass_balances\v1.6\MB_RGI60-11.00746.csv', index_col='time', parse_dates=True)
-        obs_glmb           = obs_glmb_aux.resample('AS-SEP', origin='end').last()['mb_mm']
+    working_dir        = r'E:/DIRT_X/Gepatsch/Coupling/spotpy_cal/wasim_coupling/' 
+    glaccells_grd      = 'glcalm%04i.grd'
+    glaccodes_grd      = 'glidalm%04i.grd'
+    glmb_grd           = 'glmbalm.grd'
+    glmbold_grd        = 'glmb_oldalm.grd'
+    station_area       = 57.6
+    subbasins_areas    = {1:3.86, 
+                        2:9.46, 201:1.68, 202:0.93,
+                        3:4.11, 
+                        4:6.71, 
+                        5:11.59, 
+                        6:4.89, 
+                        7:36.98, 701:12.41, 702:4.14, 703:1.89, 704:2.98, 705:1.33, 706:1.01,
+                        8:7.52, 801:14.16, 802:2.36, 803:2.69, 
+                        9:16.58,
+                        10:23.41,
+                        11:23.38, 1101:6.42, 1102:26.02, 1103:1.78,
+                        12:49.06}
+    obs_runoff         = pd.read_csv(r'E:\DIRT_X\Gepatsch\Coupling\obs_discharge\gepatschalm_discharge.csv', index_col=0, parse_dates=True)['Q']
+    obs_glmb_aux       = pd.read_csv(r'E:\DIRT_X\Gepatsch\Coupling\oggm_mass_balances\v1.6\MB_RGI60-11.00746.csv', index_col='time', parse_dates=True)
+    obs_glmb           = obs_glmb_aux.resample('AS-SEP', origin='end').last()['mb_mm']
 
-        target_id_runoff   = '11'
-        target_id_glac     = '1102'
-        sim_runoff         = 'qgkoalm'
-        sim_glmb           = 'glmb2alm'
-        
-        
-    elif catchment == 'Rofenache':
-        working_dir        = r'E:/DIRT_X/Gepatsch/Coupling/wasim_rofenache/'
-        glaccells_grd      = 'glcrof%04i.grd'
-        glaccodes_grd      = 'glidrof%04i.grd'
-        glmb_grd           = 'glmbrof.grd'
-        glmbold_grd        = 'glmb_oldrof.grd'
-        station_area       = 97.18
-        subbasins_areas    = {1:13.75, 2:20.52, 3:4.88, 32:58.03}
-        obs_runoff         = pd.read_csv(r'E:\DIRT_X\Gepatsch\Coupling\obs_discharge\rofenache_discharge.csv', index_col=0, parse_dates=True)['Q']
-        obs_glmb_aux       = pd.read_csv(r'E:\DIRT_X\Gepatsch\Coupling\oggm_mass_balances\mb_oggm_rofenache.csv', index_col='time', parse_dates=True)
-        obs_glmb           = obs_glmb_aux.resample('AS-OCT', origin='end').last()['mb_mm']
-
-        target_id_runoff   = '32'
-        target_id_glac     = 'tot_average'
-        sim_runoff         = 'qgkorof'
-        sim_glmb           = 'glmb2rof'
-
-
+    target_id_runoff   = '11'
+    target_id_glac     = '1102'
+    sim_runoff         = 'qgkoalm'
+    sim_glmb           = 'glmb2alm'
+ 
     calib_algorithm        = 'sceua'
     calib_runs             = 3000
         
-    t1_cal                 = '1985-01-01 00:00:00'  #'2004-01-01 00:00:00' 
-    t2_cal                 = '1998-12-31 00:00:00'  #'2017-12-31 00:00:00'
+    t1_cal                 = '1985-01-01 00:00:00'  
+    t2_cal                 = '1998-12-31 00:00:00' 
