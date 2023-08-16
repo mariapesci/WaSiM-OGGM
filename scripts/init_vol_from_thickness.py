@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Dec  2 11:04:47 2022
+@author: María Pesci
 
-@author: pesci
+This script reads the glacier areas and thicknesses created after running OGGM and merged them together in one file
+containing the ice thickness per year.
+
+Needed:
+    - path_thick: path containing the annual (per glacier) distributed thickness created from OGGM and the time series
+      with the total glacier volume from OGGM ('vol.csv')
+    - path_out: path in which the merged outputs for running WaSiM (containing glacier thicknesses) will be saved
+    - dem_wasim: DEM used in the WaSiM model
+
 """
 
 import pandas as pd
@@ -24,30 +32,20 @@ import xarray
 import rasterio
 from rasterio.merge import merge
 from rasterio.plot import show
-
-WASIMLIB_PATH = r'C:\Users\pesci\WaSIM' ##### CHANGE PATH #####
-
-# include wasimlib from arbitrary locations
-sys.path.append(WASIMLIB_PATH)
-import wasimlib
-
-# Rofemache
-# path_thick = r'E:\DIRT_X\Gepatsch\Rofenache\GIS_Rofenache\ice_thickness\all_glaciers\from_oggm'
-# path_out = r'E:\DIRT_X\Gepatsch\Rofenache\GIS_Rofenache\ice_thickness\all_glaciers\for_wasim'
-# Gepatsch
-path_thick = r'E:\DIRT_X\Gepatsch\Coupling\ice_thickness_vol\oggm_v1.6\thick_dyn_spinup_calibrated\from_oggm' #'E:\DIRT_X\Gepatsch\Coupling\ice_thickness_vol\thick\from_oggm'
-path_out = r'E:\DIRT_X\Gepatsch\Coupling\ice_thickness_vol\oggm_v1.6\thick_dyn_spinup_calibrated\for_wasim' #'E:\DIRT_X\Gepatsch\Coupling\ice_thickness_vol\thick\for_wasim'
-
-# Read the glacier thickness per glacier and reproject/resample it
-# https://rasterio.readthedocs.io/en/latest/topics/reproject.html
 from rasterio.warp import calculate_default_transform, reproject, Resampling
 
+import wasimlib
 
+path_thick = r'E:\DIRT_X\Gepatsch\Coupling\ice_thickness_vol\oggm_v1.6\thick_dyn_spinup_calibrated\from_oggm'
+path_out = r'E:\DIRT_X\Gepatsch\Coupling\ice_thickness_vol\oggm_v1.6\thick_dyn_spinup_calibrated\for_wasim' 
+
+# 1. Read the glacier thickness per glacier and reproject/resample it to the project's CRS (https://rasterio.readthedocs.io/en/latest/topics/reproject.html)
 thick_tif = glob.glob(path_thick + '\*.tif')
 
 crs_out = 'EPSG:31254'
+dem_wasim = r'E:\DIRT_X\Gepatsch\Gepatschalm\GIS_Gepatschalm\dem_wasim_100m.tif'
 
-with rasterio.open(r'E:\DIRT_X\Gepatsch\Gepatschalm\GIS_Gepatschalm\dem_wasim_100m.tif') as src: #r'E:\DIRT_X\Gepatsch\Rofenache\GIS_Rofenache\dem\dem_100m.tif'
+with rasterio.open(dem_wasim) as src:
     transform, width, height = calculate_default_transform(
         src.crs, crs_out, src.width, src.height, *src.bounds)
     kwargs = src.meta.copy()
@@ -78,10 +76,11 @@ for tf in thick_tif:
                         resampling=Resampling.nearest)
 
 #%%
-# Then merge them all together
-#https://corteva.github.io/rioxarray/stable/examples/merge.html
-init_year = 1969 #2003
-years = np.arange(init_year+1, init_year+51) #+17
+# 2. Merge all glacier files together (https://corteva.github.io/rioxarray/stable/examples/merge.html)
+# Define initial year
+init_year = 1969
+# And period (in years) for which the files will be created
+years = np.arange(init_year+1, init_year+51) 
 
 for year in years:
     thick_merged = glob.glob(path_out + '\*'+str(year)+'_rep.tif')
@@ -95,7 +94,7 @@ for year in years:
 
    
 #%%
-# Get the "volume" grid from area and thickness
+# 3. Get the "volume" grid from area and thickness
 vol_oggm = pd.read_csv(os.path.join(path_thick, 'vol.csv'), index_col='time')
 vol_index = vol_oggm.index.astype(int)
 vol_oggm.set_index(vol_index, inplace=True)
@@ -126,8 +125,7 @@ for year in years:
         
 
     # Conserve volume (from OGGM)      
-#vol_oggm = 1230475925.2 + 663518323.6 + 1078857543.8 # HEF, KAF, VEF
-    vol_oggm_year = vol_oggm.loc[year].vol_m3 # 4455932370
+    vol_oggm_year = vol_oggm.loc[year].vol_m3 
     print(year, vol_oggm_year, sum(sum_vol))
     scal_vol = vol_oggm_year/sum(sum_vol)
     #print(scal_vol)
@@ -139,16 +137,14 @@ for year in years:
 
     ncols = vol_conserv.shape[1]
     nrows = vol_conserv.shape[0]
-    xllcorner = 22597.5 #29302.500000000000
-    yllcorner = 185062.5 #177997.500000000000
+    # xll and yll corner have to be the same as used in WaSiM grids
+    xllcorner = 22597.5 
+    yllcorner = 185062.5 
     cellsize = 100.000000000000
     nodata_value = -9999
 
+    # Finally, a grid containing the ice thickness for the entire catchment is created per year
     vol_init = os.path.join(path_out, 'glaciercells'+str(year)+'.asc')
     write_head = "ncols\t%d\nnrows\t%d\nxllcorner\t%f\nyllcorner\t%f\ncellsize\t%f\nnodata_value\t%f" % \
                 (ncols,nrows,xllcorner,yllcorner,cellsize,nodata_value)
     np.savetxt(vol_init,vol_conserv,fmt="%f",header=write_head,comments="")
-
-
-
-# Save again into ascii/grd
