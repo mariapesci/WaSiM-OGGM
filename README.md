@@ -27,5 +27,5 @@ María Herminia Pesci, MSc. pesci@iww.uni-hannover.de
 
 
 This coupling scheme is developed by the Institute of Hydrology and Water Resources Management, Leibniz University Hannover (Germany)
-and is part of the project DIRT-X, which is part of AXIS, an ERA-NET initiated by JPI Climate, and funded by FFG Austria, BMBF Germany,
+and is part of the project DIRT-X, which is part of AXIS, an ERA-NET initiated by JPI Climate, and funded by FFG Austria, BMBF Germany (FKZ: 01LS1902B),
 FORMAS Sweden, NWO NL, RCN Norway with co-funding by the European Union (Grant No. 776608).
